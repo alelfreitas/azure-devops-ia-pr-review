@@ -1,11 +1,10 @@
 {
     "manifestVersion": 1,
-    "id": "GPTPullRequestReview",
+    "id": "OPENAIPRReview",
     "name": "GPT Pull Request Review",
-    "version": "0.12.2",
-    "publisher": "mustaphalarhrouch",
+    "version": "0.0.5",
+    "publisher": "JFTech",
     "galleryFlags": [
-        "Public",
         "Preview"
     ],
     "targets": [
@@ -13,7 +12,7 @@
             "id": "Microsoft.VisualStudio.Services"
         }
     ],    
-    "description": "A task that review Pull Request using GPT model from OpenAI",
+    "description": "Tarefa para revisar o Pull Request usando GPT model da OpenAI",
     "categories": [
         "Azure Pipelines"
     ],
@@ -28,12 +27,12 @@
     ],
     "files": [
         {
-            "path": "GPTPullRequestReview"
+            "path": "OPENAIPRReview"
         }
     ],
     "repository" : {
         "type" : "git",
-        "uri" : "https://github.com/mlarhrouch/azure-pipeline-gpt-pr-review"
+        "uri" : "https://github.com/alelfreitas/azure-devops-ia-pr-review"
     },
     "content": {
         "details": {
@@ -42,13 +41,13 @@
     },
     "contributions": [
         {
-            "id": "GPTPullRequestReview",
+            "id": "OPENAIPRReview",
             "type": "ms.vss-distributed-task.task",
             "targets": [
                 "ms.vss-distributed-task.tasks"
             ],
             "properties": {
-                "name": "GPTPullRequestReview"
+                "name": "OPENAIPRReview"
             }
         }
     ]

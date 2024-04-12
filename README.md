@@ -1,27 +1,29 @@
-# Use OpenAI GPT model to review Pull Requests for Azure Devops
-A task for Azure DevOps build pipelines to add GPT as PR reviewer
+# OpenAI GPT para revisar Pull Requests na Azure Devops
 
-## Installation
+implementado sob o código do mlarhrouch.
+Uma tarefa para adicionar a revisão de PR na pipeline 
 
-Installation can be done using [Visual Studio MarketPlace](https://marketplace.visualstudio.com/items?itemName=mustaphalarhrouch.GPTPullRequestReview).
+## Instalação
 
-## Usage
+A instalação pode ser feita através da [Visual Studio MarketPlace](https://marketplace.visualstudio.com/items?itemName=JFTech.OPENAIPRReview).
 
-Add the tasks to your build definition.
+## Como usar
+
+Após instalar siga os passos abaixo e adicione a tarefa de review na sua pipeline.
 
 ## Setup
 
-### Give permission to the build service agent
+### De permissão de colaborar a construção 
 
-before use this task, make sure that the build service has permissions to contribute to pull requests in your repository :
+Lembra-se de antes de adicionar a chamada dessa task, de permissão ao usuário de build (criado pelo devops no projeto) para contribuir no PR:
 
 ![contribute_to_pr](https://github.com/mlarhrouch/azure-pipeline-gpt-pr-review/blob/main/images/contribute_to_pr.png?raw=true)
 
-### Allow Task to access the system token
+### Permita a task de acessar o token do sistema
 
 #### Yaml pipelines 
 
-Add a checkout section with persistCredentials set to true.
+Adicione uma seção de checkout com persistencia de credenciais.
 
 ```yaml
 steps:
@@ -31,22 +33,17 @@ steps:
 
 #### Classic editors 
 
-Enable the option "Allow scripts to access the OAuth token" in the "Agent job" properties :
+Habilite a opção "Allow scripts to access the OAuth token" nas propriedades do "Agent job" :
 
 ![allow_access_token](https://github.com/mlarhrouch/azure-pipeline-gpt-pr-review/blob/main/images/allow_access_token.png?raw=true)
 
 ### Azure Open AI service
 
-If you choose to use the Azure Open AI service, you must fill in the endpoint and API key of Azure OpenAI. The format of the endpoint is as follows: https://{XXXXXXXX}.openai.azure.com/openai/deployments/{MODEL_NAME}/chat/completions?api-version={API_VERSION}
-
+Se você escolher usar o serviço Azure Open AI, você deve preencher o endpoint e chave da APi do OpenAI. O formato é: https://{XXXXXXXX}.openai.azure.com/openai/deployments/{MODEL_NAME}/chat/completions?api-version={API_VERSION}
 
 ### OpenAI Models
 
-In case you don't use Azure Open AI Service, you can choose which model to use, the supported models are "gpt-4", "gpt-3.5-turbo" and "gpt-3.5-turbo-16k". if no model is selected the "gpt-3.5-turbo" is used.
-
-## Contributions
-
-Found and fixed a bug or improved on something? Contributions are welcome! Please target your pull request against the `main` branch or report an issue on [GitHub](https://github.com/mlarhrouch/azure-pipeline-gpt-pr-review/issues) so someone else can try and implement or fix it.
+Os modelos suportados são "gpt-4", "gpt-3.5-turbo" and "gpt-3.5-turbo-16k".O padrão é "gpt-3.5-turbo".
 
 ## License
 

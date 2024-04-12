@@ -8,17 +8,17 @@ import * as tl from "azure-pipelines-task-lib/task";
 export async function reviewFile(targetBranch: string, fileName: string, httpsAgent: Agent, apiKey: string, openai: OpenAIApi | undefined, aoiEndpoint: string | undefined) {
   console.log(`Start reviewing ${fileName} ...`);
 
-  const defaultOpenAIModel = 'gpt-3.5-turbo';
+  const defaultOpenAIModel = 'gpt-4';
   const patch = await git.diff([targetBranch, '--', fileName]);
 
-  const instructions = `Act as a code reviewer of a Pull Request, providing feedback on possible bugs and clean code issues.
-        You are provided with the Pull Request changes in a patch format.
-        Each patch entry has the commit message in the Subject line followed by the code changes (diffs) in a unidiff format.
+  const instructions = `Atue como um revisor de código, analisando um Pull Request, dando feedback sobre possíveis bugs, erros e melhorias de código baseado em clean code.
+        Você receberá as mudanças de um Pull Request no formato patch.
+        Cada entrada de patch tera o commit na linha do assunto, seguida pelas mudanças de código (diffs) em uma formato unidiff.
 
-        As a code reviewer, your task is:
-                - Review only added, edited or deleted lines.
-                - If there's no bugs and the changes are correct, write only 'No feedback.'
-                - If there's bug or uncorrect code changes, don't write 'No feedback.'`;
+        Como um analisador de código, sua tarefa é:
+                - Revisar somente as linhas de código adicionados, editados ou deletados.
+                - Se não houver bugs, e as mudanças estiverem corretas, escreva "No feedback".
+                - Se existir bug ou código incorreto, não escreva "No feedback".'`;
 
   try {
     let choices: any;
@@ -67,7 +67,7 @@ export async function reviewFile(targetBranch: string, fileName: string, httpsAg
       }
     }
 
-    console.log(`Review of ${fileName} completed.`);
+    console.log(`Analise de ${fileName} concluída.`);
   }
   catch (error: any) {
     if (error.response) {
